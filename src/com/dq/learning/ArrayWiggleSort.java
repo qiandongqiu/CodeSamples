@@ -30,7 +30,7 @@ public class ArrayWiggleSort {
     // arr[0] >= arr[1] <= arr[2] >= arr[3] <= arr[4].... 
     static void sortInWave(int arr[], int n) 
     { 
-        // Traverse all even elements 
+        // Traverse all even elements, make even number bigger>previous and bigger>next 
         for (int i = 0; i < n; i+=2) 
         { 
             // If current even element is smaller 
@@ -50,8 +50,8 @@ public class ArrayWiggleSort {
 	public static void main(String[] args)
 	{
 		//int[] nums={2,8,9,10,5,7,3};
-		//int[] nums={2,8,9,10,5,7};
-		int[] nums={14,8,10,9};
+		int[] nums={2,8,9,10,5,7};
+		//int[] nums={14,8,10,9};
 		//wiggleSort(nums);
 		sortInWave(nums,nums.length);
 		for(int k:nums) {

@@ -1,6 +1,8 @@
 package com.dq.learning;
 import java.math.*;
 
+//one thing to remember is that we go from 0 to max length of both strings; when index is over the length, we just add '0' instead.
+
 public class AddString {
 	static int add(char A, char B, int carry) {
 		int a = A - '0';

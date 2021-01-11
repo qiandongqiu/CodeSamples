@@ -20,6 +20,25 @@ Example 2:
 
 Input: [1,2,2]
 Output: 4
+
+Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.
+             The third child gets 1 candy because it satisfies the above two conditions.
+
+You are giving candies to these children subjected to the following requirements:
+
+Each child must have at least one candy.
+Children with a higher rating get more candies than their neighbors.
+What is the minimum candies you must give?
+
+Example 1:
+
+Input: [1,0,2]
+Output: 5
+Explanation: You can allocate to the first, second and third child with 2, 1, 2 candies respectively.
+Example 2:
+
+Input: [1,2,2]
+Output: 4
 Explanation: You can allocate to the first, second and third child with 1, 2, 1 candies respectively.
              The third child gets 1 candy because it satisfies the above two conditions.
  */
@@ -37,14 +56,14 @@ public class ArrayDistrictCandy {
 	}
 
 	public int candy(int[] ratings) {
-int count = 0;
+		int count = 0;
 
 		int[] result = new int[ratings.length];
 		Arrays.fill(result, 1);
 		// go from begin to end first
 		for (int i = 1; i < ratings.length; i++) {
 			if (ratings[i] > ratings[i - 1]) {
-				while(result[i]<=result[i-1])
+				while (result[i] <= result[i - 1])
 					result[i]++;
 			}
 		}
@@ -52,7 +71,7 @@ int count = 0;
 
 		for (int i = ratings.length - 2; i >= 0; i--) {
 			if (ratings[i] > ratings[i + 1]) {
-				while(result[i]<=result[i+1])
+				while (result[i] <= result[i + 1])
 					result[i]++;
 			}
 		}

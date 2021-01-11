@@ -29,7 +29,7 @@ public class BulbSwitch {
 		
 
 		boolean[] bulbs = new boolean[n];
-		Arrays.fill(bulbs, true);
+			Arrays.fill(bulbs, true);
 
 		int round = 2; // round 1 is used to set every bulb to true
 		for (round = 2; round < n; round++) {
@@ -76,7 +76,7 @@ public class BulbSwitch {
 		System.out.println(bs.bulbSwitch(0));
 		System.out.println(bs.bulbSwitch(1));
 		System.out.println(bs.bulbSwitch(3));
-		//System.out.println(bs.bulbSwitch(99999)); //timeout
-		System.out.println(bs.bulbSwitchMathWay(99999)); //timeout
+		System.out.println(bs.bulbSwitch(99999)); //timeout, 316
+		//System.out.println(bs.bulbSwitchMathWay(99999)); //timeout, 316
 	}
 }

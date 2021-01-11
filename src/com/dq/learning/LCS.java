@@ -3,7 +3,7 @@ package com.dq.learning;
 public class LCS {
 	
 	//: LCS(A[m], B[n]) =  
-	//     if A[m-1]==B[m-1], then =1+ LCS(A[m-1], B[n-1])
+	//     if A[m-1]==B[n-1], then =1+ LCS(A[m-1], B[n-1])
     //     else   = max ( LCS(A[m-1],B[n]), LCS(A[m], B[n-1))
 	
 	static int getLCS(char[] A, char[] B, int m, int n) {

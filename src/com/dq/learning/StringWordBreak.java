@@ -2,9 +2,11 @@ package com.dq.learning;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 //https://leetcode.com/problems/word-break-ii/
+//https://www.geeksforgeeks.org/word-break-problem-trie-solution/
 /*
  *Given a non-empty string s and a dictionary wordDict containing a list of non-empty words, add spaces in s to construct a sentence 
  *where each word is a valid dictionary word. Return all such possible sentences.
@@ -37,48 +39,58 @@ Output:
 
 public class StringWordBreak {
 
+	public List<String> wordBreak(String s, List<String> wordDict) {
+		return dfs(s, wordDict, new HashMap<String, List<String>>());
+	}
 
-	public List<String> wordBreak(String s, List<String> wordDict) {  //add memorilization for DP FAST!!
-		List<String> result = new ArrayList<>();
-		if(wordDict.contains(s))  {
-			result.add(s);
-			return result;
+	private List<String> dfs(String s, List<String> wordDict, HashMap<String, List<String>> mem) {
+		if (mem.containsKey(s)) { // DP: memorize previous result
+			return mem.get(s);
 		}
-		
-		
-		for(int i=0; i<s.length(); i++) {
-			String prefix = s.substring(0,i);
-			if(wordDict.contains(prefix)) {
-				List<String> subResult = wordBreak(s.substring(i), wordDict);
-				for(String one: subResult) {
-					result.add(prefix+" "+ one);
+
+		List<String> res = new ArrayList<String>();
+		for (String word : wordDict) {
+			if (s.startsWith(word)) {
+				String next = s.substring(word.length());
+				if (next.isEmpty())
+					res.add(word);
+				else {
+					for (String sub : dfs(next, wordDict, mem)) {
+						res.add(word + " " + sub);
+					}
 				}
-				
 			}
 		}
-		
-		return result;
-		
-
+		mem.put(s, res);
+		return res;
 	}
-	
 
 	public static void main(String[] args) {
-		//String s = "catsanddog";
-		//String[] wordDict = { "cat", "cats", "and", "sand", "dog" };
-		
-		String s="pineapplepenapple";
-		String[] wordDict= {"apple","pen","applepen","pine","pineapple"};	
-		//expected:  ["pine apple pen apple","pineapple pen apple","pine applepen apple"]
+		// String s = "catsanddog";
+		// String[] wordDict = { "cat", "cats", "and", "sand", "dog" };
 
-		//Time limit exceeds one withput DP:
-		//String s="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-		//String[] wordDict= {"a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa"};
-		
+		// String s="pineapplepenappleA"; //not possible
+		// String s="pineapplepenapple";
+		// String[] wordDict= {"apple","pen","applepen","pine","pineapple"};
+		// expected: ["pine apple pen apple","pineapple pen apple","pine applepen
+		// apple"]
+
+		// Time limit exceeds one withput DP: ( the String could not be splited using
+		// the words)
+		// String s =
+		// "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		// String[] wordDict = { "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa",
+		// "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa" };
+
+		String s = "abcdefg";
+		String[] wordDict = { "ab", "abc", "cd", "de", "defg", "fg", "efg" };
+
 		List<String> dict = Arrays.asList(wordDict);
 
 		StringWordBreak ins = new StringWordBreak();
 		List<String> result = ins.wordBreak(s, dict);
+		System.out.println("size=" + result.size());
+
 		for (String one : result) {
 			System.out.println(one);
 		}

@@ -20,6 +20,14 @@ Example 2:
 
 Input: [1,2,4,8]
 Output: [1,2,4,8]
+
+
+==========
+Algorithm:  
+   1) sort the array from small to big
+   2) loop the array, for index i, find all index j<i, to see whether value[i] % value [j]==0, using a DP array to store the result.
+
+
  */
 public class ArrayLargestDivisibleSubset {
 	class Point {

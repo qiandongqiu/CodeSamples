@@ -62,19 +62,19 @@ public class CheckValidString {
 	public static boolean checkValidString(String s) {
 		       int lo = 0, hi = 0;
 		       for (char c: s.toCharArray()) {
-		           lo += c == '(' ? 1 : -1;
-		           hi += c != ')' ? 1 : -1;
-		           if (hi < 0) break;
-		           lo = Math.max(lo, 0);
+		           lo += c == '(' ? 1 : -1;  //lo: treat * as ), stores at least how many ( have seen, 
+		           hi += c != ')' ? 1 : -1;  //hi: treat * as (, stores at most how many (,including *, have seen
+		           if (hi < 0) break;  //since we treat * as (, if hi <0, we break out.
+		           lo = Math.max(lo, 0);  //hi is >0, if lo<0, then means we have seen so far are *; since * can be used as blank, we reset lo.
 		       }
 		       return lo == 0;
 	}
 	
 	public static void main(String[] args) {
 		//String s = "(*))";
-		//String s = "**((*"; //false
+		String s = "**((*"; //false
 		//String s = "((***";  //true
-        String s = "(())((())()()(*)(*()(())())())()()((()())((()))(*";   //false
+       // String s = "(())((())()()(*)(*()(())())())()()((()())((()))(*";   //false
 
 		//String s = "(())((())()()(*)(*()(())())())()()((()())((()))(*";
 		//String s = "    ((())()()(*)(*()(())())())()()((()())((()))(*";
@@ -93,7 +93,8 @@ public class CheckValidString {
 		//String s = "              *  *                (            (*";
 		//String s = "              *  *                (            (*";
 		 //"*(";
-		System.out.println(checkValidString_2(s.toCharArray(),0));
+		//System.out.println(checkValidString_2(s.toCharArray(),0));
+		System.out.println(checkValidString(s));
 	}
 
 }

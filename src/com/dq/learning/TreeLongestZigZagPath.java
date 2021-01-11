@@ -37,7 +37,7 @@ public class TreeLongestZigZagPath {
 		int left=0, right=0;
 		if(node.left!=null) {
 			if(previousLeft)
-				left = dfs(node.left, 1, true);
+				left = dfs(node.left, 1, true);    //Remember: this is the key: that longest does not always start from Root, it could just start from here!!!
 			else
 				left = dfs(node.left, sumSoFar+1, true);
 		}

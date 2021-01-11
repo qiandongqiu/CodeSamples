@@ -11,8 +11,7 @@ public class ArrayMediaOf2SortedArray {
 		int middle = 0;
 		boolean isOdd = (totalCount % 2 != 0);
 		System.out.println("isOdd=" + isOdd);
-		// : 0,1,2,3,4: 5/2=3, 3-1=2
-		// : 0,1,2,3: 4/2=2, 2-1=1
+	
 
 		middle = totalCount / 2; // ( 3/2=1; 4/2=2)
 		System.out.println("middle=" + middle);

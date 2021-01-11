@@ -20,6 +20,8 @@ Input: [3,1,5,8]
 Output: 167 
 Explanation: nums = [3,1,5,8] --> [3,5,8] -->   [3,8]   -->  [8]  --> []
              coins =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167
+Algorithem:
+    the way we look at it is: we keep using as i as the last index of ballon to burst; then we can max(left of i) and max(right of i)
  */
 public class ArrayBurstBallon {
 	private int maxCoinsHelper(int[] nums, int[] parent, int start, int end) {
@@ -51,7 +53,7 @@ public class ArrayBurstBallon {
 			int currentMax = leftValue * nums[i] * rightValue;
 
 			int previousParent = parent[i];
-			parent[i] = -2; // mart it as used
+			parent[i] = -2; // mark it as used
 
 			int subMax = maxCoinsHelper(nums, parent, start, end);
 
